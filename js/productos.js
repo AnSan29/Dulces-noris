@@ -2,56 +2,56 @@ const productos = {
   dulcesLeche: [
     {
       nombre: "Dulce de coco (Media libra)",
-      precio: 12000,
+      precio: 15000,
       imagen: "./src/img/coco1.webp",
       descripcion:
         "Sabor tropical suave y aromático, ideal para disfrutar en cualquier ocasión.",
     },
     {
       nombre: "Dulce de coco (1 libra)",
-      precio: 22000,
+      precio: 28000,
       imagen: "./src/img/coco1.webp",
       descripcion:
         "Sabor tropical suave y aromático, ideal para disfrutar en cualquier ocasión.",
     },
     {
       nombre: "Dulce de guandú (Media libra)",
-      precio: 12000,
+      precio: 15000,
       imagen: "./src/img/guandu1.jpg",
       descripcion:
         "Un clásico costero, cremoso y lleno de tradición en cada bocado.",
     },
     {
       nombre: "Dulce de guandú (1 libra)",
-      precio: 22000,
+      precio: 28000,
       imagen: "./src/img/guandu1.jpg",
       descripcion:
         "Un clásico costero, cremoso y lleno de tradición en cada bocado.",
     },
     {
       nombre: "Dulce de Ñame (Media libra)",
-      precio: 12000,
+      precio: 15000,
       imagen: "./src/img/ñame.webp",
       descripcion:
         "Suave y delicioso, con un toque de canela que te recuerda a la costa.",
     },
     {
       nombre: "Dulce de Ñame (1 libra)",
-      precio: 22000,
+      precio: 28000,
       imagen: "./src/img/ñame.webp",
       descripcion:
         "Suave y delicioso, con un toque de canela que te recuerda a la costa.",
     },
     {
       nombre: "Dulce de Leche cortada (Media libra)",
-      precio: 14000,
+      precio: 15000,
       imagen: "./src/img/leche-cortada.jpg",
       descripcion:
         "Cremoso y suave, el dulce de leche es el manjar perfecto para cualquier momento",
     },
     {
       nombre: "Dulce de Leche cortada (1 libra)",
-      precio: 25000,
+      precio: 28000,
       imagen: "./src/img/leche-cortada.jpg",
       descripcion:
         "Cremoso y suave, el dulce de leche es el manjar perfecto para cualquier momento",
@@ -60,42 +60,42 @@ const productos = {
   dulcesBasicos: [
     {
       nombre: "Dulce de Papaya verde (Media libra)",
-      precio: 10000,
+      precio: 13000,
       imagen: "./src/img/papaya1.jpg",
       descripcion:
         "Fresco y delicadamente dulce, con la esencia de la papaya verde.",
     },
     {
       nombre: "Dulce de Papaya verde (1 libra)",
-      precio: 20000,
+      precio: 25000,
       imagen: "./src/img/papaya1.jpg",
       descripcion:
         "Fresco y delicadamente dulce, con la esencia de la papaya verde.",
     },
     {
       nombre: "Dulce de Piña con coco (Media libra)",
-      precio: 10000,
+      precio: 13000,
       imagen: "./src/img/cocoPiña1.jpg",
       descripcion:
         "Una mezcla irresistible de piña y coco, para un sabor tropical único.",
     },
     {
       nombre: "Dulce de Piña con coco (1 libra)",
-      precio: 20000,
+      precio: 25000,
       imagen: "./src/img/cocoPiña1.jpg",
       descripcion:
         "Una mezcla irresistible de piña y coco, para un sabor tropical único.",
     },
     {
       nombre: "Dulce de Mango (Media libra)",
-      precio: 10000,
+      precio: 13000,
       imagen: "./src/img/mango1.jpeg",
       descripcion:
         "El equilibrio perfecto entre dulce y ácido, con un toque refrescante.",
     },
     {
       nombre: "Dulce de Mango (1 libra)",
-      precio: 20000,
+      precio: 25000,
       imagen: "./src/img/mango1.jpeg",
       descripcion:
         "El equilibrio perfecto entre dulce y ácido, con un toque refrescante.",
@@ -104,14 +104,14 @@ const productos = {
   dulcesExoticos: [
     {
       nombre: "Jalea de Tamarindo (Media libra)",
-      precio: 10000,
+      precio: 13000,
       imagen: "./src/img/tamarindoFruta.webp",
       descripcion:
         "Un sabor ácido y dulce que refresca el paladar con cada bocado.",
     },
     {
       nombre: "Jalea de Tamarindo (1 libra)",
-      precio: 20000,
+      precio: 25000,
       imagen: "./src/img/tamarindoFruta.webp",
       descripcion:
         "Un sabor ácido y dulce que refresca el paladar con cada bocado.",
