@@ -1,0 +1,77 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+.navbar {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #555 !important;
+}
+
+.nav-link.active {
+  color: #c1121f !important;
+}
+
+.nav-link:hover {
+  color: #198754 !important;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #c1121f;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  margin-bottom: 20px;
+}
+
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-success:hover {
+  background-color: #145c42;
+  border-color: #145c42;
+}
+
+#totalPrecio {
+  font-weight: bold;
+  color: #c1121f;
+}
+.nav-link {
+  font-weight: 500;
+  color: #555 !important;
+}
+
+.nav-link.active {
+  color: #c1121f !important; /* Rojo bandera Barranquilla */
+}
+
+.nav-link:hover {
+  color: #198754 !important; /* Verde bandera */
+}
+footer {
+  background-color: #264188;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: auto;
+}
+.container {
+  min-height: calc(
+    100vh - 120px
+  ); /* Ajusta esto si quieres más o menos espacio */
+}

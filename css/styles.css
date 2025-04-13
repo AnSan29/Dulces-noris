@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --main-blue: #264188;
+  --accent-yellow: #efbc27;
+  --wine-red: #953522;
+  --soft-bg: #fdfcf7;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--soft-bg);
+}
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-item p {
+  /* Texto encima de las imágenes */
+  font-weight: 600;
+  color: var(--wine-red);
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.btn-main {
+  background-color: var(--accent-yellow);
+  color: #000;
+  border: none;
+}
+
+.btn-main:hover {
+  background-color: #e0aa22;
+}
+
+.slogan {
+  color: var(--wine-red);
+  font-size: 1.2rem;
+}
+.nav-link {
+  font-weight: 500;
+  color: #555 !important;
+}
+
+.nav-link.active {
+  color: #c1121f !important; /* Rojo bandera Barranquilla */
+}
+
+.nav-link:hover {
+  color: #198754 !important; /* Verde bandera */
+}
