@@ -1,77 +1,110 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff;
-  color: #333;
-}
-
-.navbar {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.nav-link {
-  font-weight: 500;
-  color: #555 !important;
-}
-
-.nav-link.active {
-  color: #c1121f !important;
-}
-
-.nav-link:hover {
-  color: #198754 !important;
-}
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #c1121f;
-}
-
+/* Estilo para las tarjetas del carrito */
 .card {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-  margin-bottom: 20px;
+  border: 2px solid #efbc27;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-success {
-  background-color: #198754;
-  border-color: #198754;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.btn-success:hover {
-  background-color: #145c42;
-  border-color: #145c42;
-}
-
-#totalPrecio {
+/* Estilo para el título de los productos */
+.card-title {
+  font-size: 1.25rem;
+  color: #264188;
   font-weight: bold;
-  color: #c1121f;
-}
-.nav-link {
-  font-weight: 500;
-  color: #555 !important;
 }
 
-.nav-link.active {
-  color: #c1121f !important; /* Rojo bandera Barranquilla */
+/* Estilo para los precios y cantidades */
+.card-body p {
+  font-size: 1.1rem;
+  color: #555;
 }
 
-.nav-link:hover {
-  color: #198754 !important; /* Verde bandera */
+.card-body p span {
+  font-weight: bold;
+  color: #efbc27;
 }
+
+/* Botón de eliminar */
+.btn-danger {
+  font-size: 1rem;
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+  padding: 8px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
+
+/* Total y botones */
+#totalPrecio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #264188;
+  margin-top: 20px;
+}
+
+#btnProcederPago {
+  font-size: 1.2rem;
+  padding: 12px 25px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+#btnProcederPago:hover {
+  background-color: #218838;
+}
+
+/* Estilo del botón "Volver a los productos" */
+.btn-secondary {
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  background-color: #6c757d;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Footer */
 footer {
   background-color: #264188;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-top: auto;
+  color: white;
+  padding: 30px 0;
 }
-.container {
-  min-height: calc(
-    100vh - 120px
-  ); /* Ajusta esto si quieres más o menos espacio */
+
+footer .btn {
+  background-color: #efbc27;
+  color: #264188;
+  font-weight: bold;
+}
+
+footer .btn:hover {
+  background-color: #f29c11;
+}
+
+/* Estilo responsive */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 20px;
+  }
+
+  #carritoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

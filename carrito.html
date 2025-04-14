@@ -9,39 +9,106 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/carrito.css" />
-    <script src="./js/carrito.js" defer></script>
+    <script src="js/carrito.js" defer></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- navbar -->
+    <nav
+      class="navbar navbar-expand-lg shadow-sm sticky-top"
+      style="
+        background: linear-gradient(90deg, #efbc27, #f6d768);
+        border-radius: 0 0 1.5rem 1.5rem;
+      "
+    >
       <div class="container-fluid">
-        <img
-          src="./src/guias/logo.png"
-          alt="logo"
-          class="img-thumbnail"
-          style="width: 80px; height: auto"
-        />
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img
+            src="./src/guias/logo.png"
+            alt="logo"
+            class="img-thumbnail me-2"
+            style="width: 60px; height: 60px; border-radius: 50%"
+          />
+          <span
+            style="
+              font-family: 'Georgia', serif;
+              font-weight: bold;
+              color: #264188;
+              font-size: 1.3rem;
+            "
+            >Dulces Doña Noris</span
+          >
+        </a>
 
+        <!-- Botón de hamburguesa -->
         <button
-          class="navbar-toggler"
+          class="navbar-toggler p-0 border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style="background-color: transparent; box-shadow: none"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: white;
+              width: 30px;
+              height: 4px;
+              display: block;
+              margin: 5px auto;
+              border-radius: 4px;
+            "
+          ></span>
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: white;
+              width: 30px;
+              height: 4px;
+              display: block;
+              margin: 5px auto;
+              border-radius: 4px;
+            "
+          ></span>
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: white;
+              width: 30px;
+              height: 4px;
+              display: block;
+              margin: 5px auto;
+              border-radius: 4px;
+            "
+          ></span>
         </button>
+
+        <!-- Menú de navegación -->
         <div
-          class="collapse navbar-collapse justify-content-center"
+          class="collapse navbar-collapse justify-content-end"
           id="navbarNavAltMarkup"
         >
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="index.html"
+            <a
+              class="nav-link mx-2 fw-bold"
+              style="color: #264188"
+              href="index.html"
               >Inicio</a
             >
-            <a class="nav-link" href="productos.html">Productos</a>
-            <a class="nav-link" href="carrito.html">Carrito</a>
+            <a
+              class="nav-link mx-2 fw-bold"
+              style="color: #264188"
+              href="productos.html"
+              >Productos</a
+            >
+            <a
+              class="nav-link mx-2 fw-bold"
+              style="color: #264188"
+              href="carrito.html"
+              >Carrito</a
+            >
           </div>
         </div>
       </div>
@@ -52,17 +119,86 @@
 
       <!-- Carrito de compras -->
       <div id="carritoContainer" class="row"></div>
-      <p id="totalPrecio" class="fw-bold"></p>
+
+      <p id="totalPrecio" class="fw-bold text-center"></p>
 
       <button id="btnProcederPago" class="btn btn-success mb-4 px-4">
-        Hacer pedido via whatsapp
+        Hacer pedido via Whatsapp
       </button>
 
       <!-- Botón para volver a la página de productos -->
       <div class="text-center mt-4">
-        <a href="productos.html" class="btn btn-secondary"
-          >Volver a los Productos</a
-        >
+        <a href="productos.html" class="btn btn-secondary">
+          Volver a los Productos
+        </a>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmación de Pedido -->
+    <div
+      class="modal fade"
+      id="modalFormularioPedido"
+      tabindex="-1"
+      aria-labelledby="modalFormularioPedidoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalFormularioPedidoLabel">
+              Confirmar pedido
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="formPedido">
+              <div class="mb-3">
+                <label for="nombre" class="form-label"
+                  >Nombre de quien recibe</label
+                >
+                <input type="text" class="form-control" id="nombre" required />
+              </div>
+              <div class="mb-3">
+                <label for="direccion" class="form-label"
+                  >Dirección de entrega</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="direccion"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telefono"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="tipoPago" class="form-label">Tipo de pago</label>
+                <select class="form-select" id="tipoPago" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="Transferencia">Transferencia</option>
+                  <option value="Efectivo contra entrega">
+                    Efectivo contra entrega
+                  </option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-success w-100">
+                Enviar pedido por WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -73,10 +209,13 @@
           <div class="col-md-6 mb-4">
             <h5 class="fw-bold mb-3">Dulces Doña Noris</h5>
             <p>
-              <i class="bi bi-geo-alt-fill me-2"></i> Calle 35b #17-97,
+              <i class="bi bi-geo-alt-fill me-2"></i> Cra 45 #23-56,
               Barranquilla
             </p>
-            <p><i class="bi bi-telephone-fill me-2"></i> +57 324 416 4948</p>
+            <p><i class="bi bi-telephone-fill me-2"></i> +57 300 123 4567</p>
+            <p>
+              <i class="bi bi-envelope-fill me-2"></i> contacto@donanoris.com
+            </p>
           </div>
 
           <!-- Formulario -->

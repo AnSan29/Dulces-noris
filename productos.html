@@ -31,94 +31,199 @@
         border: none;
       "
     >
-      <i class="bi bi-cart-fill text-white fs-4"></i>
+      <i class="bi bi-cart-fill text-white fs-4 position-relative">
+        <span
+          id="contadorCarrito"
+          class="badge rounded-pill bg-danger"
+          style="
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 0.75rem;
+            display: none;
+          "
+        >
+          0
+        </span>
+      </i>
     </a>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <img
-          src="./src/guias/logo.png"
-          alt="logo"
-          class="img-thumbnail"
-          style="width: 80px; height: auto"
-        />
 
+    <!-- navbar -->
+    <nav
+      class="navbar navbar-expand-lg shadow-sm sticky-top"
+      style="
+        background: linear-gradient(90deg, #efbc27, #f6d768);
+        border-radius: 0 0 1.5rem 1.5rem;
+      "
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img
+            src="./src/guias/logo.png"
+            alt="logo"
+            class="img-thumbnail me-2"
+            style="width: 60px; height: 60px; border-radius: 50%"
+          />
+          <span
+            style="
+              font-family: 'Georgia', serif;
+              font-weight: bold;
+              color: #264188;
+              font-size: 1.3rem;
+            "
+            >Dulces Doña Noris</span
+          >
+        </a>
+
+        <!-- Botón de hamburguesa -->
         <button
-          class="navbar-toggler"
+          class="navbar-toggler p-0 border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style="background-color: transparent; box-shadow: none"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: white;
+              width: 30px;
+              height: 4px;
+              display: block;
+              margin: 5px auto;
+              border-radius: 4px;
+            "
+          ></span>
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: white;
+              width: 30px;
+              height: 4px;
+              display: block;
+              margin: 5px auto;
+              border-radius: 4px;
+            "
+          ></span>
+          <span
+            class="navbar-toggler-icon"
+            style="
+              background-color: white;
+              width: 30px;
+              height: 4px;
+              display: block;
+              margin: 5px auto;
+              border-radius: 4px;
+            "
+          ></span>
         </button>
+
+        <!-- Menú de navegación -->
         <div
-          class="collapse navbar-collapse justify-content-center"
+          class="collapse navbar-collapse justify-content-end"
           id="navbarNavAltMarkup"
         >
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="index.html"
+            <a
+              class="nav-link mx-2 fw-bold"
+              style="color: #264188"
+              href="index.html"
               >Inicio</a
             >
-            <a class="nav-link" href="productos.html">Productos</a>
-            <a class="nav-link" href="carrito.html">Carrito</a>
+            <a
+              class="nav-link mx-2 fw-bold"
+              style="color: #264188"
+              href="productos.html"
+              >Productos</a
+            >
+            <a
+              class="nav-link mx-2 fw-bold"
+              style="color: #264188"
+              href="carrito.html"
+              >Carrito</a
+            >
           </div>
         </div>
       </div>
     </nav>
-
     <div class="container mt-4">
       <h1 class="text-center mb-4">Dulces Doña Noris</h1>
       <hr class="w-50 mx-auto mb-4" style="border-top: 3px solid #efbc27" />
-
       <p class="h5 text-center text-muted px-3">
-        Elige tus dulces favoritos y agrégalos al carrito. Cuando estés listo,
-        dirígete al carrito para revisar tu pedido y finalizar la compra.
-        ¡Endúlzate con tradición!
+        Elige tus dulces favoritos y agrégalos al carrito. ¡Endúlzate con
+        tradición!
       </p>
 
       <!-- Categorías de productos -->
-      <!-- Categorías de productos -->
       <h3 class="text-center mb-3 display-4 mt-4">Dulces con Leche</h3>
-      <div
-        id="dulcesLeche"
-        class="row mb-4"
-        style="position: relative; z-index: 5"
-      ></div>
+      <div id="dulcesLeche" class="row mb-4"></div>
 
       <h3 class="text-center mb-3 display-4 mt-4">Dulces Básicos</h3>
-      <div
-        id="dulcesBasicos"
-        class="row mb-4"
-        style="position: relative; z-index: 5"
-      ></div>
+      <div id="dulcesBasicos" class="row mb-4"></div>
 
       <h3 class="text-center mb-3 display-4 mt-4">Dulces Exóticos</h3>
-      <div
-        id="dulcesExoticos"
-        class="row mb-4"
-        style="position: relative; z-index: 5"
-      ></div>
+      <div id="dulcesExoticos" class="row mb-4"></div>
 
       <!-- Botón para ir al carrito -->
       <div class="text-center mt-4">
         <a href="carrito.html" class="btn btn-primary">Ir al Carrito</a>
       </div>
     </div>
-    <footer class="text-white pt-5 mt-3" style="background-color: #264188">
+
+    <!-- Modal de producto agregado -->
+    <div
+      class="modal fade"
+      id="modalProductoAgregado"
+      tabindex="-1"
+      aria-labelledby="modalProductoAgregadoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalProductoAgregadoLabel">
+              ¡Producto Agregado!
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalMensaje"></div>
+          <div class="modal-footer justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Seguir comprando
+            </button>
+            <a href="carrito.html" class="btn btn-primary">Ir a mi carrito</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-white pt-5 mt-4" style="background-color: #264188">
       <div class="container">
         <div class="row">
           <!-- Información -->
           <div class="col-md-6 mb-4">
             <h5 class="fw-bold mb-3">Dulces Doña Noris</h5>
             <p>
-              <i class="bi bi-geo-alt-fill me-2"></i> Calle 35b #17-97,
+              <i class="bi bi-geo-alt-fill me-2"></i> Cra 45 #23-56,
               Barranquilla
             </p>
-            <p><i class="bi bi-telephone-fill me-2"></i> +57 324 416 4948</p>
+            <p><i class="bi bi-telephone-fill me-2"></i> +57 300 123 4567</p>
+            <p>
+              <i class="bi bi-envelope-fill me-2"></i> contacto@donanoris.com
+            </p>
           </div>
-
           <!-- Formulario -->
           <div class="col-md-6">
             <h5 class="fw-bold mb-3">¿Quieres ser contactado?</h5>
@@ -164,13 +269,13 @@
             </form>
           </div>
         </div>
-
         <hr class="border-light mt-4" />
         <p class="text-center mb-0 pb-3">
           © 2025 Dulces Doña Noris. Todos los derechos reservados.
         </p>
       </div>
     </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

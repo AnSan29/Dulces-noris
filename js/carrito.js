@@ -9,22 +9,25 @@ function renderCarrito() {
   carrito.forEach((item, idx) => {
     const subtotal = item.precio * item.cantidad;
     total += subtotal;
-    contenedor.innerHTML += `
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="${item.imagen}" class="card-img-top" style="height: 200px; object-fit: cover;" />
-          <div class="card-body text-center">
-            <h5 class="card-title">${item.nombre}</h5>
-            <p>Cantidad: ${item.cantidad}</p>
-            <p>$${subtotal}</p>
-            <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${idx})">Eliminar</button>
-          </div>
+
+    const fila = `
+      <div class="carrito-item d-flex align-items-center justify-content-between p-2 border rounded mb-2">
+        <img src="${item.imagen}" alt="${
+      item.nombre
+    }" class="img-thumbnail me-3" style="width: 80px; height: 80px; object-fit: cover;" />
+        <div class="flex-grow-1">
+          <h6 class="mb-1 fw-bold">${item.nombre}</h6>
+          <p class="mb-0">Cantidad: <strong>${item.cantidad}</strong></p>
+          <p class="mb-0">Subtotal: <strong>$${subtotal.toLocaleString()} COP</strong></p>
         </div>
+        <button class="btn btn-danger btn-sm ms-3" onclick="eliminarProducto(${idx})">Eliminar</button>
       </div>
     `;
+
+    contenedor.innerHTML += fila;
   });
 
-  totalEl.textContent = `Total: $${total}`;
+  totalEl.textContent = `Total: $${total.toLocaleString()} COP`;
 }
 
 function eliminarProducto(idx) {
@@ -36,33 +39,54 @@ function eliminarProducto(idx) {
 
 document.addEventListener("DOMContentLoaded", renderCarrito);
 
-/* al presionar btn proceder pago - direccionar a wsap */
 document
   .getElementById("btnProcederPago")
   .addEventListener("click", function () {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
     if (carrito.length === 0) {
       alert("Tu carrito está vacío.");
       return;
     }
 
-    let mensaje =
-      "¡Hola! Me gustaría hacer un pedido de los siguientes dulces:%0A%0A";
-
-    let total = 0;
-
-    carrito.forEach((producto, index) => {
-      mensaje += `${index + 1}. ${producto.nombre} - $${producto.precio}%0A`;
-      total += producto.precio;
-    });
-
-    mensaje += ` Total: $${total}`;
-    mensaje += ` Dirección: _______________________ Teléfono: _______________________`;
-
-    // Número de WhatsApp con código de país (ej: +57 para Colombia)
-    const numeroWhatsApp = "573244164948"; // reemplázalo por el número real
-
-    const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
-    window.open(url, "_blank");
+    const modal = new bootstrap.Modal(
+      document.getElementById("modalFormularioPedido")
+    );
+    modal.show();
   });
+document.getElementById("formPedido").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const direccion = document.getElementById("direccion").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const tipoPago = document.getElementById("tipoPago").value;
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  let mensaje = `Buen día, deseo realizar el siguiente pedido:%0A%0A`;
+  let total = 0;
+
+  carrito.forEach((producto, index) => {
+    const subtotal = producto.precio * producto.cantidad;
+    mensaje += `${index + 1}. ${producto.nombre} x${
+      producto.cantidad
+    } - $${subtotal.toLocaleString()} COP%0A`;
+    total += subtotal;
+  });
+
+  mensaje += `%0AValor total: $${total.toLocaleString()} COP%0A%0A`;
+  mensaje += `Nombre de quien recibe: ${nombre}%0A`;
+  mensaje += `Dirección de entrega: ${direccion}%0A`;
+  mensaje += `Teléfono de contacto: ${telefono}%0A`;
+  mensaje += `Método de pago: ${tipoPago}`;
+
+  const numeroWhatsApp = "573244164948";
+  const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+  window.open(url, "_blank");
+
+  // Cierra el modal después de enviar
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("modalFormularioPedido")
+  );
+  modal.hide();
+});

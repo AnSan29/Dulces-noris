@@ -104,14 +104,14 @@ const productos = {
   dulcesExoticos: [
     {
       nombre: "Jalea de Tamarindo (Media libra)",
-      precio: 13000,
+      precio: 15000,
       imagen: "./src/img/tamarindoFruta.webp",
       descripcion:
         "Un sabor ácido y dulce que refresca el paladar con cada bocado.",
     },
     {
       nombre: "Jalea de Tamarindo (1 libra)",
-      precio: 25000,
+      precio: 28000,
       imagen: "./src/img/tamarindoFruta.webp",
       descripcion:
         "Un sabor ácido y dulce que refresca el paladar con cada bocado.",
@@ -119,8 +119,16 @@ const productos = {
   ],
 };
 
+// Agrega producto al carrito
 function agregarAlCarrito(categoria, index) {
   const producto = productos[categoria][index];
+  const inputCantidad = document.getElementById(
+    `cantidad-${categoria}-${index}`
+  );
+  let cantidad = parseInt(inputCantidad.value);
+
+  if (isNaN(cantidad) || cantidad <= 0) cantidad = 1;
+
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   const productoExistente = carrito.find(
@@ -128,32 +136,83 @@ function agregarAlCarrito(categoria, index) {
   );
 
   if (productoExistente) {
-    // Si el producto ya existe, incrementa la cantidad
-    productoExistente.cantidad += 1;
+    productoExistente.cantidad += cantidad;
   } else {
-    // Si el producto no existe, lo agrega con cantidad 1
-    producto.cantidad = 1;
-    carrito.push(producto);
+    const productoConCantidad = { ...producto, cantidad };
+    carrito.push(productoConCantidad);
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert(`${producto.nombre} agregado al carrito.`);
+  actualizarContadorCarrito();
+  mostrarModalProductoAgregado({ nombre: producto.nombre }); // Usa el modal que ya tenías
 }
 
+// Actualiza el contador del carrito
+function actualizarContadorCarrito() {
+  const contador = document.getElementById("contadorCarrito");
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  if (carrito.length > 0) {
+    contador.style.display = "inline-block";
+    contador.textContent = carrito.reduce(
+      (sum, item) => sum + item.cantidad,
+      0
+    );
+  } else {
+    contador.style.display = "none";
+  }
+}
+
+function ajustarCantidad(categoria, index, cambio) {
+  const inputCantidad = document.getElementById(
+    `cantidad-${categoria}-${index}`
+  );
+  let cantidad = parseInt(inputCantidad.value, 10);
+
+  if (isNaN(cantidad)) cantidad = 1; // Si el valor no es un número válido, lo establecemos en 1
+  cantidad = Math.max(1, cantidad + cambio); // Aseguramos que la cantidad no sea menor que 1
+  inputCantidad.value = cantidad;
+}
+
+// Muestra el modal del producto agregado
+function mostrarModalProductoAgregado(producto) {
+  const mensaje = `${producto.nombre} agregado al carrito.`;
+  document.getElementById("modalMensaje").textContent = mensaje;
+
+  const modal = new bootstrap.Modal(
+    document.getElementById("modalProductoAgregado")
+  );
+  modal.show();
+}
+
+// Renderiza productos por categoría
 function renderProductos() {
-  // Función para renderizar los productos de cada categoría
   const renderCategoria = (categoria, contenedorId) => {
     const contenedor = document.getElementById(contenedorId);
     productos[categoria].forEach((item, index) => {
       const card = `
         <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow">
-            <img src="${item.imagen}" class="card-img-top" alt="${item.nombre}" style="height: 200px; object-fit: cover;">
-            <div class="card-body text-center">
-              <h5 class="card-title">${item.nombre}</h5>
-              <p class="card-text">${item.descripcion}</p>
-              <p class="fw-bold text-primary">$${item.precio}</p>
-              <button class="btn btn-outline-primary" onclick="agregarAlCarrito('${categoria}', ${index})">Agregar al Carrito</button>
+          <div class="card h-100 shadow-sm">
+            <img src="${item.imagen}" class="card-img-top" alt="${
+        item.nombre
+      }" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="text-center">
+                <h5 class="card-title">${item.nombre}</h5>
+                <p class="card-text">${item.descripcion}</p>
+                <p class="fw-bold text-primary">$${item.precio.toLocaleString()} COP</p>
+              </div>
+              <div class="d-flex flex-column align-items-center gap-3 mt-3">
+                <label for="cantidad-${categoria}-${index}" class="fw-bold">Cantidad:</label>
+                <div class="d-flex justify-content-center align-items-center gap-2 w-100">
+                  <button class="btn btn-outline-primary btn-sm" onclick="ajustarCantidad('${categoria}', ${index}, -1)">–</button>
+                  <input type="number" min="1" value="1" class="form-control form-control-sm cantidad-input" id="cantidad-${categoria}-${index}" style="width: 80px;">
+                  <button class="btn btn-outline-primary btn-sm" onclick="ajustarCantidad('${categoria}', ${index}, 1)">+</button>
+                </div>
+                <button class="btn btn-primary btn-sm mt-2" onclick="agregarAlCarrito('${categoria}', ${index})">
+                  <i class="bi bi-cart-plus"></i> Agregar al carrito
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -162,10 +221,13 @@ function renderProductos() {
     });
   };
 
-  // Renderiza cada categoría de productos
   renderCategoria("dulcesLeche", "dulcesLeche");
   renderCategoria("dulcesBasicos", "dulcesBasicos");
   renderCategoria("dulcesExoticos", "dulcesExoticos");
 }
 
-document.addEventListener("DOMContentLoaded", renderProductos);
+// Inicializa todo cuando carga el DOM
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarContadorCarrito();
+  renderProductos();
+});
