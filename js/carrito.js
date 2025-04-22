@@ -1,3 +1,4 @@
+// renderizar cards de productos agregados al localStorage
 function renderCarrito() {
   const contenedor = document.getElementById("carritoContainer");
   const totalEl = document.getElementById("totalPrecio");
@@ -30,15 +31,19 @@ function renderCarrito() {
   totalEl.textContent = `Total: $${total.toLocaleString()} COP`;
 }
 
+// eliminar producto del carrito
+
 function eliminarProducto(idx) {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   carrito.splice(idx, 1);
   localStorage.setItem("carrito", JSON.stringify(carrito));
   renderCarrito();
 }
-
+// y actualizar el localStorage
 document.addEventListener("DOMContentLoaded", renderCarrito);
 
+// Al hacer clic en el botón "Proceder al Pago", se verifica si el carrito tiene productos.
+// Si está vacío, muestra una alerta al usuario. Si hay productos, se abre el modal con el formulario de pedido.
 document
   .getElementById("btnProcederPago")
   .addEventListener("click", function () {
@@ -53,6 +58,11 @@ document
     );
     modal.show();
   });
+
+// Al enviar el formulario de pedido, se evita el comportamiento por defecto del formulario.
+// Se obtienen los datos del cliente y el contenido del carrito desde el localStorage.
+// Luego, se construye un mensaje con el detalle del pedido y se abre WhatsApp con ese mensaje listo para enviar.
+// Finalmente, se cierra el modal del formulario.
 document.getElementById("formPedido").addEventListener("submit", function (e) {
   e.preventDefault();
 

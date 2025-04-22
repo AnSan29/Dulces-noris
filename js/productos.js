@@ -1,3 +1,4 @@
+// Mi lista de productos
 const productos = {
   dulcesLeche: [
     {
@@ -144,7 +145,7 @@ function agregarAlCarrito(categoria, index) {
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
   actualizarContadorCarrito();
-  mostrarModalProductoAgregado({ nombre: producto.nombre }); // Usa el modal que ya tenías
+  mostrarModalProductoAgregado({ nombre: producto.nombre });
 }
 
 // Actualiza el contador del carrito
@@ -169,8 +170,8 @@ function ajustarCantidad(categoria, index, cambio) {
   );
   let cantidad = parseInt(inputCantidad.value, 10);
 
-  if (isNaN(cantidad)) cantidad = 1; // Si el valor no es un número válido, lo establecemos en 1
-  cantidad = Math.max(1, cantidad + cambio); // Aseguramos que la cantidad no sea menor que 1
+  if (isNaN(cantidad)) cantidad = 1;
+  cantidad = Math.max(1, cantidad + cambio);
   inputCantidad.value = cantidad;
 }
 
